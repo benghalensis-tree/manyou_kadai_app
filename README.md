@@ -1,5 +1,5 @@
 # model名 User
-- name : string
+- user_name : string
 - email : string
 - password_digest :string
 
@@ -7,8 +7,12 @@
 - task_name : string
 - content : text
 - status : string
-- priority : string
-- end_date : string
+- priority : integer
+- end_date : date
 
 # model名 Label
 - label_name : string
+
+# model名 LabelsTask
+- label_id : key
+- task_id : key
