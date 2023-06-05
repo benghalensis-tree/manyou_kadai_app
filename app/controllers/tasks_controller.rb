@@ -11,9 +11,9 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      redirect_to tasks_path
+      redirect_to tasks_path, notice: "タスクを追加しました!"
     else
-      render :new
+      render :new, notice: "追加に失敗しました!"
     end
   end
 
@@ -22,12 +22,19 @@ class TasksController < ApplicationController
   end
 
   def update
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+      redirect_to tasks_path, notice: "タスクを編集しました!"
+    else
+      
+    end
+
   end
 
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-    redirect_to tasks_path
+    redirect_to tasks_path, notice: "タスクを削除しました！"
   end
 
   private
