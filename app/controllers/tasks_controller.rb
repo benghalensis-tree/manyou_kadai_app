@@ -13,7 +13,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to tasks_path, notice: "タスクを追加しました!"
     else
-      render :new, notice: "追加に失敗しました!"
+      render :new
     end
   end
 
@@ -26,7 +26,7 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       redirect_to tasks_path, notice: "タスクを編集しました!"
     else
-      
+      render :edit
     end
 
   end
