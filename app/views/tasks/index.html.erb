@@ -12,6 +12,7 @@
   <%= task.priority %>
   <%= "期限"%> 
   <%= task.end_date %>
+  <%= link_to "削除", task_path(task), method: :delete %>
 </p>
 
 <% end %>

@@ -20,6 +20,11 @@ class TasksController < ApplicationController
   def update
   end
 
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+  end
+
   private
   def task_params
     params.require(:task).permit(:task_name, :content, :status, :priority, :end_date)
