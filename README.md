@@ -1,24 +1,19 @@
-# README
+# model名 User
+- user_name : string
+- email : string
+- password_digest :string
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# model名 Task
+- task_name : string
+- content : text
+- status : string
+- priority : integer
+- end_date : date
+- user_id : foreign_key
 
-Things you may want to cover:
+# model名 Label
+- label_name : string
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# model名 LabelsTask
+- label_id : foreign_key
+- task_id : foreign_key

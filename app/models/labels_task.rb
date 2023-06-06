@@ -1,0 +1,2 @@
+class LabelsTask < ApplicationRecord
+end
