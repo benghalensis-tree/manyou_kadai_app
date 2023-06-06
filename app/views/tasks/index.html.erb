@@ -3,21 +3,17 @@
 <h1>タスク一覧</h1>
 
 <% @tasks.each do |task|%>
-<p>
-  <%= "タスク名"%>
-  <%= task.task_name %>
-  <%= "内容"%>
-  <%= task.content %>
-  <%= "ステータス"%>
-  <%= task.status %>
-  <%= "優先順位"%>
-  <%= task.priority %>
-  <%= "期限"%> 
-  <%= task.end_date %>
 
-  <%= link_to "詳細", task_path(task)%>
-  <%= link_to "編集", edit_task_path(task)%>
-  <%= link_to "削除", task_path(task), method: :delete %>
-</p>
+  <h2>タスク名  :  <%= task.task_name %></h2>
+<ul>
+  <li>内容  :  <%= task.content %></li>
+  <li>進捗状況  :   <%= task.status %></li>
+  <li>優先度  :  <%= task.priority %></li>
+  <li>作成日  :  <%= task.created_at %></li>
+  <li>終了日  :  <%= task.end_date %></li>
+  <li><%= link_to "詳細", task_path(task)%></li>
+  <li><%= link_to "編集", edit_task_path(task)%></li>
+  <li><%= link_to "削除", task_path(task), method: :delete %></li>
+</ul>
 
 <% end %>

@@ -21,6 +21,12 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit tasks_path
         expect(page).to have_content 'hoge'
       end
+      context 'タスクが作成日時の降順に並んでいる場合' do
+        it '新しいタスクが一番上に表示される' do
+          # ここに実装する
+          task = 
+        end
+      end
     end
   end
   describe '詳細表示機能' do
@@ -32,4 +38,6 @@ RSpec.describe 'タスク管理機能', type: :system do
        end
      end
   end
+  
+  
 end
