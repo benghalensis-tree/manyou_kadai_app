@@ -6,6 +6,9 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in 'task_name', with: 'hogehoge'  
         fill_in 'content', with: 'hogehoge'  
+        fill_in 'status', with: 'hogehoge'  
+        fill_in 'priority', with: 3  
+        fill_in 'end_date', with: 20230610  
         click_on '登録する'
         expect(page).to have_content 'hogehoge'
       end

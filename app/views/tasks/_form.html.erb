@@ -15,11 +15,15 @@
 
   <%= f.label :content %>
   <%= f.text_field :content, id: 'content' %>
+
   <%= f.label :status %>
-  <%= f.text_field :status %>
+  <%= f.text_field :status, id: 'status' %>
+
   <%= f.label :priority %>
-  <%= f.text_field :priority %>
+  <%= f.text_field :priority, id: 'priority' %>
+
   <%= f.label :end_date %>
-  <%= f.text_field :end_date %>
+  <%= f.text_field :end_date, id: 'end_date' %>
+  
   <%= f.submit "登録する"%>
 <% end %>
