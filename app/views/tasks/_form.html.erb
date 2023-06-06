@@ -9,10 +9,12 @@
       </ul>
     </div>
   <% end %>
-  <%= f.label :task_name %>
-  <%= f.text_field :task_name %>
+
+  <%= f.label :task_name%>
+  <%= f.text_field :task_name, id: 'task_name' %>
+
   <%= f.label :content %>
-  <%= f.text_field :content %>
+  <%= f.text_field :content, id: 'content' %>
   <%= f.label :status %>
   <%= f.text_field :status %>
   <%= f.label :priority %>
