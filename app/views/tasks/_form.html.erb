@@ -17,7 +17,7 @@
   <%= f.text_field :content, id: 'content' %>
 
   <%= f.label :status %>
-  <%= f.text_field :status, id: 'status' %>
+  <%= f.select :status, [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]], include_blank: "選択して下さい" %>
 
   <%= f.label :priority %>
   <%= f.text_field :priority, id: 'priority' %>
