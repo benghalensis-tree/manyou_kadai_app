@@ -1,8 +1,13 @@
 class TasksController < ApplicationController
 
   def index
+
     if params[:sort_expired]
       @tasks = Task.order(:end_date)
+
+    elsif params[:search].present?
+      @tasks = Task.where(task_name: params[:search][:task_name])
+      
     else
       @tasks = Task.order(created_at: :desc)
     end
@@ -16,7 +21,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.save
       # redirect_to task_path(@task), notice: "タスクを追加しました!"
-      redirect_to @task, notice: "タスクを追加しま!"
+      redirect_to @task, notice: "タスクを追加しました!"
     else
       render :new
     end
