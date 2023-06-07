@@ -4,8 +4,8 @@
 
 <% @tasks.each do |task|%>
   
-  <ul class = 'task_row'>
-    <h2>タスク名  :  <%= task.task_name %></h2>
+  <ul >
+    <h2 class='task_row'>タスク名  :  <%= task.task_name %></h2>
     <li>内容  :  <%= task.content %></li>
     <li>進捗状況  :   <%= task.status %></li>
     <li>優先度  :  <%= task.priority %></li>
