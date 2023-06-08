@@ -8,6 +8,8 @@ class TasksController < ApplicationController
     elsif params[:search].present?
       task_name_params = params[:search][:task_name]
       @tasks = Task.where("task_name LIKE ?", "%#{task_name_params}%")
+    elsif params[:search_status].present?
+      @tasks = Task.where(status: params[:search_status][:status])
 
     else
       @tasks = Task.order(created_at: :desc)
