@@ -5,12 +5,10 @@
 <%= form_with(scope: :search, local: true, url: tasks_path, method: :get) do |f|%>
   <%= f.label :タスク名検索 %>
   <%= f.text_field :task_name %>
-  <%= f.submit '検索'%>
-<% end %>
 
-<%= form_with(scope: :search_status, url: tasks_path, method: :get) do |f| %>
   <%= f.label :進捗状況 %>
   <%= f.select :status, Task.statuses.keys.map { |status| [status, status] }, prompt: '選択してください' %>
+  
   <%= f.submit '検索' %>
 <% end %>
 
