@@ -3,12 +3,12 @@
 <h1>タスク一覧</h1>
 
 <%= form_with(scope: :search, local: true, url: tasks_path, method: :get) do |f|%>
-  <%= f.label :タスク名検索 %>
+  <%= f.label :task_name, 'タスク名' %>
   <%= f.text_field :task_name %>
 
-  <%= f.label :進捗状況 %>
+  <%= f.label :status, 'ステータス' %>
   <%= f.select :status, Task.statuses.keys.map { |status| [status, status] }, prompt: '選択してください' %>
-  
+
   <%= f.submit '検索' %>
 <% end %>
 

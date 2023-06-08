@@ -6,7 +6,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in 'task_name', with: 'hogehoge'  
         fill_in 'content', with: 'hogehoge'  
-        fill_in 'status', with: 'hogehoge'  
+        select '未着手', from: 'ステータス'
         fill_in 'priority', with: 3  
         fill_in 'end_date', with: 20230610  
         click_on '登録する'
@@ -16,9 +16,9 @@ RSpec.describe 'タスク管理機能', type: :system do
   end
   describe '一覧表示機能' do
     before do
-      task = FactoryBot.create(:task, id:2, task_name: 'hoge', end_date: 20230607)
-      task2 = FactoryBot.create(:task, id:3, task_name: 'fuga', end_date: 20230604)
-      task3 = FactoryBot.create(:task, id:1, task_name: 'hogefuga', end_date: 20230606)
+      task = FactoryBot.create(:task, status:'未着手', id:2, task_name: 'hoge', end_date: 20230607)
+      task2 = FactoryBot.create(:task,status:'未着手', id:3, task_name: 'fuga', end_date: 20230604)
+      task3 = FactoryBot.create(:task, status:'未着手',id:1, task_name: 'hogefuga', end_date: 20230606)
       visit tasks_path
     end
     context '一覧画面に遷移した場合' do
@@ -38,7 +38,30 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_list[0]).to have_content 'fuga'
       end
     end
+    context '検索をした場合' do
+      it 'タイトルで検索できる' do
+        fill_in 'タスク名', with: 'hogehoge'  
+        click_on '検索'
+        task_list = all('.task_row')
+        expect(task_list).not_to have_content 'fuga'
+      end
+      it 'ステータスで検索できる' do
+        select '未着手', from: 'ステータス'
+        click_on '検索'
+        task_list = all('.task_row')
+        expect(task_list).not_to have_content '完了'
+      end
+      it 'タイトルとステータス両方で検索できる' do
+        fill_in 'タスク名', with: 'hogehoge'  
+        select '未着手', from: 'ステータス'
+        click_on '検索'
+        task_list = all('.task_row')
+        expect(task_list).not_to have_content 'fuga'
+        expect(task_list).not_to have_content '完了'
+      end
+    end
   end
+
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do
        it '該当タスクの内容が表示される' do
