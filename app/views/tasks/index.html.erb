@@ -13,9 +13,10 @@
 <% end %>
 
 
-<%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
+<%= link_to "終了期限でソートする", tasks_path(sort_end_date: "true") %>
+<%= link_to "優先度でソートする", tasks_path(sort_priority: "true") %>
+
 <% @tasks.each do |task|%>
-  
   <ul >
     <h2 class='task_row'>タスク名  :  <%= task.task_name %></h2>
     <li>内容  :  <%= task.content %></li>

@@ -2,7 +2,7 @@ class TasksController < ApplicationController
 
   def index
 
-    if params[:sort_expired]
+    if params[:sort_end_date]
       @tasks = Task.order(:end_date)
 
     elsif params[:search].present?
