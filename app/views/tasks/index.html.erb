@@ -29,3 +29,4 @@
     <li><%= link_to "削除", task_path(task), method: :delete %></li>
   </ul>
 <% end %>
+<%= paginate @tasks %>
