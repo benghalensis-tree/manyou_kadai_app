@@ -8,7 +8,7 @@ FactoryBot.define do
     end_date { 20230608 }
   end
 
-  factory :task2 do
+  factory :second_task do
     task_name { 'デフォルトのtask_name2' }
     content { 'デフォルトのcontent2' }
     status { '未着手' }
