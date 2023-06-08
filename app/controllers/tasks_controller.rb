@@ -6,16 +6,14 @@ class TasksController < ApplicationController
       @tasks = Task.order(:end_date)
 
     elsif params[:search].present?
-      if params[:search][:task_name].present? && params[:search][:status].present?
-        task_name_params = params[:search][:task_name]
-        @tasks = Task.where("task_name LIKE ?", "%#{task_name_params}%").where(status: params[:search][:status])
+      if task_name_params.present? && status_params.present?        
+        @tasks = Task.search_task_name(task_name_params).search_status(status_params)
 
-      elsif params[:search][:task_name].present?
-        task_name_params = params[:search][:task_name]
-        @tasks = Task.where("task_name LIKE ?", "%#{task_name_params}%")
+      elsif task_name_params.present?        
+        @tasks = Task.search_task_name(task_name_params)
 
-      elsif params[:search][:status].present?
-        @tasks = Task.where(status: params[:search][:status])
+      elsif status_params.present?
+        @tasks = Task.search_status(status_params)
       end
       
     else
@@ -64,4 +62,13 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:task_name, :content, :status, :priority, :end_date)
   end
+
+  def task_name_params 
+    params[:search][:task_name]
+  end
+
+  def status_params
+    params[:search][:status]
+  end
+
 end
