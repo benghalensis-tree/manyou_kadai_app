@@ -20,7 +20,7 @@
   <%= f.select :status, [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]], include_blank: "選択して下さい" %>
 
   <%= f.label :priority %>
-  <%= f.text_field :priority, id: 'priority' %>
+  <%= f.select :priority, [["低", "低"], ["中", "中"], ["高", "高"]], include_blank: "選択して下さい" %>
 
   <%= f.label :end_date %>
   <%= f.text_field :end_date, id: 'end_date' %>
