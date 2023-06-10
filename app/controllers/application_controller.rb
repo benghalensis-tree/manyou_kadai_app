@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
     user = User.find(params[:id])
     redirect_to tasks_path unless current_user == user
   end
+
+  def admin_required
+    redirect_to tasks_path unless current_user.admin? == true
+  end
 end
