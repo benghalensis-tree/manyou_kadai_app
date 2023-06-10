@@ -23,5 +23,9 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
 
+  <% if action == 'edit'%>
+    <%= f.label :admin, '管理者権限を与える'%>
+    <%= f.check_box :admin %>
+  <% end %>
   <%= f.submit "Create my account"%>
 <% end %>

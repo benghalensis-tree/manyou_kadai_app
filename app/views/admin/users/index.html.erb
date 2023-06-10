@@ -8,6 +8,7 @@
       <th>メールアドレス</th>
       <th>アカウント作成日</th> 
       <th>タスク数</th> 
+      <th>管理者権限</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,6 +20,8 @@
         <td><%= user.email %></td>
         <td><%= user.created_at %></td>  
         <td><%= user.tasks.length %></td>  
+        <td><%= '管理者' if user.admin %></td>  
+        
         <td><%= link_to "タスク一覧", admin_user_path(user), class: 'btn btn-primary'%></td>
         <td><%= link_to "編集", edit_admin_user_path(user), class: 'btn btn-primary'%></td>
         <td><%= link_to "削除", admin_user_path(user), method: :delete, class: 'btn btn-warning' %></td>
