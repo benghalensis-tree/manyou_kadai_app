@@ -1,7 +1,6 @@
-<%= notice %>
-
 <h1>タスク一覧</h1>
 
+<%= notice %>
 <%= form_with(scope: :search, local: true, url: tasks_path, method: :get) do |f|%>
   <%= f.label :task_name, 'タスク名' %>
   <%= f.text_field :task_name, type: "text", placeholder: "Search"%>
