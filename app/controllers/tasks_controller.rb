@@ -31,7 +31,6 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.user_id = current_user.id
     if @task.save
-      # redirect_to task_path(@task), notice: "タスクを追加しました!"
       redirect_to @task, notice: "タスクを追加しました!"
     else
       render :new
@@ -52,7 +51,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.find(params[:id])
+    @task = Task.find_by(id: params[:id])
   end
 
   def destroy

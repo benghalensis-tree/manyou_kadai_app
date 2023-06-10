@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :user_limitationed, only:[:show]
   skip_before_action :login_required, only:[:new, :create]
 
   def new
