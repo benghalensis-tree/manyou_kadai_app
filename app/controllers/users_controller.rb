@@ -17,6 +17,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @user_tasks = @user.tasks.page(params[:page])
+
   end
 
   private
