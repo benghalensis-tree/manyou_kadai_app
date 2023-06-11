@@ -38,7 +38,12 @@ RSpec.describe 'ユーザー管理機能', type: :system do
     context '一般ユーザが他人の詳細画面に飛ぶと' do
       it 'タスク一覧画面に遷移する' do
 
-        
+        visit new_session_path
+        fill_in 'メール', with: 'test@gmail.com'  
+        fill_in 'パスワード', with: 111111
+        click_on 'ログインする'
+        visit user_path(@second_user.id)
+        expect(page).to have_css('.test', text: '不正なアクセスです')
       end
     end
   end
