@@ -36,7 +36,7 @@ RSpec.describe 'ユーザー管理機能', type: :system do
       end
     end
     context '一般ユーザが他人の詳細画面に飛ぶと' do
-      it 'タスク一覧画面に遷移する' do
+      it 'フラッシュメッセージが表示される' do
 
         visit new_session_path
         fill_in 'メール', with: 'test@gmail.com'  
@@ -46,11 +46,26 @@ RSpec.describe 'ユーザー管理機能', type: :system do
         expect(page).to have_css('.test', text: '不正なアクセスです')
       end
     end
+    context 'ログアウトすると' do
+      it 'フラッシュメッセージが表示される' do
+
+        visit new_session_path
+        fill_in 'メール', with: 'test@gmail.com'  
+        fill_in 'パスワード', with: 111111
+        click_on 'ログインする'
+        click_on 'ログアウト'
+        expect(page).to have_css('.test', text: 'ログアウトしました')
+      end
+    end
   end
 
   describe '管理画面機能' do
-     context '任意のタスク詳細画面に遷移した場合' do
-       it '該当タスクの内容が表示される' do
+    before do
+      @user = FactoryBot.create(:user)
+      @second_user = FactoryBot.create(:user, user_name: 'fuga', email:'test2@gmail.com', admin: false )
+    end
+     context '管理ユーザが管理画面にアクセスしても' do
+       it 'タスク一覧ページに遷移しない' do
         
        end
      end
