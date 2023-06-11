@@ -110,6 +110,16 @@ RSpec.describe 'ユーザー管理機能', type: :system do
           expect(page).to have_content 'test3@gmail.com'
         end
       end
+      context '管理ユーザがユーザの削除をすると' do
+        it 'ユーザーが一覧画面に表示されない' do
+          visit admin_users_path
+          user_list = all('.user_row')
+          within(user_list[1]) do
+            click_link '削除'
+          end
+          expect(page).not_to have_content 'test3@gmail.com'
+        end
+      end
     end
   end
 end
