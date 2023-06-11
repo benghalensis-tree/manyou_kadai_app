@@ -1,4 +1,4 @@
-<%= notice %>
+
 <%= form_with(scope: :search, local: true, url: choose_tasks_index_or_users_show, method: :get) do |f|%>
   <%= f.label :task_name, 'タスク名' %>
   <%= f.text_field :task_name, type: "text", placeholder: "Search"%>

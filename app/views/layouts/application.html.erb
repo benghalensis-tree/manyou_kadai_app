@@ -40,9 +40,6 @@
             </div>
         </div>
     </nav>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
-    <% end %>
     <%= yield %>
     <!-- Footer-->
     <footer class="border-top">
