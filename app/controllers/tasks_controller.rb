@@ -62,7 +62,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:task_name, :content, :status, :priority, :end_date)
+    params.require(:task).permit(:task_name, :content, :status, :priority, :end_date, :admin)
   end
 
   def task_name_params 

@@ -1,7 +1,7 @@
 module TasksHelper
 
   def choose_tasks_index_or_users_show
-    if action_name == 'new' || action_name == 'create'
+    if action_name == 'index'
       tasks_path
 
     else
