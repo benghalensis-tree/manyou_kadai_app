@@ -58,15 +58,30 @@ RSpec.describe 'ユーザー管理機能', type: :system do
       end
     end
   end
-
+  
   describe '管理画面機能' do
     before do
       @user = FactoryBot.create(:user)
       @second_user = FactoryBot.create(:user, user_name: 'fuga', email:'test2@gmail.com', admin: false )
     end
-     context '管理ユーザが管理画面にアクセスしても' do
-       it 'タスク一覧ページに遷移しない' do
-        
+    context '管理ユーザが管理画面にアクセスしたら' do
+      it 'フラッシュメッセージが表示されない' do
+        visit new_session_path
+        fill_in 'メール', with: 'test@gmail.com'  
+        fill_in 'パスワード', with: 111111
+        click_on 'ログインする'
+        visit admin_users_path
+        expect(page).not_to have_content '管理者権限がありません'
+      end
+    end
+    context '一般ユーザが管理画面にアクセスしたら' do
+      it 'フラッシュメッセージが表示される' do
+        visit new_session_path
+        fill_in 'メール', with: 'test2@gmail.com'  
+        fill_in 'パスワード', with: 111111
+        click_on 'ログインする'
+        visit admin_users_path
+        expect(page).to have_css('.test', text: '管理者権限がありません')
        end
      end
   end
