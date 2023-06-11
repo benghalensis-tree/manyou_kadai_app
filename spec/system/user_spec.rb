@@ -99,6 +99,17 @@ RSpec.describe 'ユーザー管理機能', type: :system do
         visit admin_user_path(@second_user.id)
         expect(page).not_to have_content '管理者権限がありません'
       end
+      context '管理ユーザがユーザの編集をすると' do
+        it '編集内容が一覧画面に表示される' do
+          visit edit_admin_user_path(@second_user.id)
+          fill_in '名前', with: 'hogehoge'  
+          fill_in 'メールアドレス', with: 'test3@gmail.com'  
+          fill_in 'パスワード', with: 123456 
+          fill_in '確認用パスワード', with: 123456 
+          click_on '更新'
+          expect(page).to have_content 'test3@gmail.com'
+        end
+      end
     end
   end
 end

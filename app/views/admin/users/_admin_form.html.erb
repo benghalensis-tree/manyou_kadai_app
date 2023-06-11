@@ -26,6 +26,8 @@
   <% if action == 'edit'%>
     <%= f.label :admin, '管理者権限を与える'%>
     <%= f.check_box :admin %>
-  <% end %>
-  <%= f.submit "新規作成"%>
+    <%= f.submit "更新 "%>
+  <% else %>
+    <%= f.submit "新規作成"%>
+   <% end %>
 <% end %>
