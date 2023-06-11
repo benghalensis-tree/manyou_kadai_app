@@ -16,7 +16,7 @@
         <div class="container px-4 px-lg-5">
 
             <% flash.each do |key, value| %>
-                <%= content_tag(:div, value, class: "#{key}") %>
+                <%= content_tag(:div, value, class: "#{key}", class: 'test') %>
             <% end %>
             
             <div class="collapse navbar-collapse" id="navbarResponsive">
