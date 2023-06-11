@@ -5,4 +5,13 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, length: { minimum: 6}
   has_many :tasks, dependent: :destroy
+  before_update :always_one_admin
+
+
+  private
+  def always_one_admin
+    if User.pluck(:admin).count(true) <= 1 && admin_was && admin == false
+      throw(:abort)
+    end
+  end
 end
