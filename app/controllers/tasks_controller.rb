@@ -6,8 +6,17 @@ class TasksController < ApplicationController
       @tasks = Task.order(:end_date).page(params[:page])
 
     elsif params[:search].present?
-      if task_name_params.present? && status_params.present?        
+      if task_name_params.present? && status_params.present? && label_params.present?    
+        @tasks = Task.search_task_name(task_name_params).search_status(status_params).search_label(label_params).page(params[:page])
+
+      elsif task_name_params.present? && status_params.present?        
         @tasks = Task.search_task_name(task_name_params).search_status(status_params).page(params[:page])
+
+      elsif task_name_params.present? && label_params.present?        
+        @tasks = Task.search_task_name(task_name_params).search_label(label_params).page(params[:page])
+
+      elsif status_params.present? && label_params.present?        
+        @tasks = Task.search_status(status_params).search_label(label_params).page(params[:page])
 
       elsif task_name_params.present?        
         @tasks = Task.search_task_name(task_name_params).page(params[:page])
