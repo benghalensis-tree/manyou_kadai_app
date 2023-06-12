@@ -9,5 +9,7 @@ class Task < ApplicationRecord
   scope :search_task_name, -> (task_name_params){ where('task_name LIKE ?', "%#{task_name_params}%") }
   belongs_to :user
   has_many :labels_tasks
+  has_many :labels, through: :labels_tasks
+  has_many :labels_tasks_labels, through: :labels_tasks, source: :label
 
 end
