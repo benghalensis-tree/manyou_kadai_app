@@ -41,11 +41,4 @@ RSpec.describe 'ラベル機能', type: :system do
       end
     end
   end
-  describe '詳細画面' do
-    context 'ラベルを付けたタスクの詳細画面に' do
-      it 'すべてのラベルが表示されている' do
-        
-      end
-    end
-  end
 end
