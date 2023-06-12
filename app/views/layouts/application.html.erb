@@ -12,22 +12,36 @@
   </head>
 
   <body>
-
-    
-    <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
         <div class="container px-4 px-lg-5">
-            </button>
+
+            <% flash.each do |key, value| %>
+                <%= content_tag(:div, value, class: "#{key}", class: 'test') %>
+            <% end %>
+            
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto py-4 py-lg-0">
                     <li class="nav-item"><%= link_to "タスク一覧", tasks_path, class: "nav-link px-lg-3 py-3 py-lg-4" %></li>
                     <li class="nav-item"><%= link_to "タスク追加", new_task_path, class: "nav-link px-lg-3 py-3 py-lg-4" %></li>
+
+                    <% if logged_in? %>
+                        <li class="nav-item"><%= link_to "プロフィール", user_path(current_user.id),class: "nav-link px-lg-3 py-3 py-lg-4" %></li>
+                        <li class="nav-item"><%= link_to "ログアウト", session_path(current_user.id), method: :delete, class: "nav-link px-lg-3 py-3 py-lg-4" %></li>
+
+                        <% if current_user.admin?%>
+                            <li class="nav-item"><%= link_to "管理者ページ", admin_users_path, class: "nav-link px-lg-3 py-3 py-lg-4" %></li>
+                            <li class="nav-item"><%= link_to "ユーザー登録", new_admin_user_path, class: "nav-link px-lg-3 py-3 py-lg-4" %></li>
+                        <% end %>
+
+                    <% else %>
+                        <li class="nav-item"><%= link_to "新規登録", new_user_path, class: "nav-link px-lg-3 py-3 py-lg-4" %></li>
+                        <li class="nav-item"><%= link_to "ログイン", new_session_path, class: "nav-link px-lg-3 py-3 py-lg-4" %></li>
+                    <% end %>    
                 </ul>
             </div>
         </div>
     </nav>
     <%= yield %>
-    <!-- Footer-->
     <footer class="border-top">
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">

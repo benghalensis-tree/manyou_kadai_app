@@ -1,0 +1,33 @@
+
+<% if user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(user.errors.count, "error") %> prohibited this <%= user.user_name %> from being saved:</h2>
+    <ul>
+    <% user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with(model: user, local: true, url: choose_new_or_edit ) do |f| %>  
+  <%= f.label :user_name %>
+  <%= f.text_field :user_name %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+
+  <% if action == 'edit'%>
+    <%= f.label :admin, '管理者権限を与える'%>
+    <%= f.check_box :admin %>
+    <%= f.submit "更新 "%>
+  <% else %>
+    <%= f.submit "新規作成"%>
+   <% end %>
+<% end %>

@@ -11,7 +11,7 @@ ja:
         priority: 優先度
         end_date: 終了期限
       user:
-        name: 名前
+        user_name: 名前
         email: メールアドレス
         current_password: 現在のパスワード
         password: パスワード

@@ -29,8 +29,8 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.user_id = current_user.id
     if @task.save
-      # redirect_to task_path(@task), notice: "タスクを追加しました!"
       redirect_to @task, notice: "タスクを追加しました!"
     else
       render :new
@@ -51,7 +51,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.find(params[:id])
+    @task = Task.find_by(id: params[:id])
   end
 
   def destroy
@@ -62,7 +62,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:task_name, :content, :status, :priority, :end_date)
+    params.require(:task).permit(:task_name, :content, :status, :priority, :end_date, :admin)
   end
 
   def task_name_params 
