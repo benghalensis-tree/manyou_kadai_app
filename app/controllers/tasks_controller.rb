@@ -14,10 +14,13 @@ class TasksController < ApplicationController
 
       elsif status_params.present?
         @tasks = Task.search_status(status_params).page(params[:page])
+
+      elsif label_params.present?
+        @tasks = Label.find_by(id: label_params).tasks.page(params[:page])
+
       else
         @tasks = Task.order(created_at: :desc).page(params[:page])
       end
-      
     else
       @tasks = Task.order(created_at: :desc).page(params[:page])
     end
@@ -71,6 +74,10 @@ class TasksController < ApplicationController
 
   def status_params
     params[:search][:status]
+  end
+
+  def label_params
+    params[:search][:label_id]
   end
 
 end
