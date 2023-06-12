@@ -25,6 +25,11 @@
   <%= f.label :end_date %>
   <%= f.text_field :end_date, id: 'end_date' %>
 
+  <% Label.all.each do |label| %>
+    <%= f.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+    <%= label.name %>
+  <% end %>
+
   <%= f.submit "登録する", class: 'btn btn-blue'%>
 <% end %>
 
