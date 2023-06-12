@@ -8,7 +8,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.admin = false
+    if User.all.length == 0
+      @user.admin = true
+    else
+      @user.admin = false
+    end
+
     if @user.save
       session[:user_id] = @user.id
       redirect_to user_path(@user.id)
