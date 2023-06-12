@@ -17,7 +17,6 @@ class TasksController < ApplicationController
 
       elsif label_params.present?
         @tasks = Label.find_by(id: label_params).tasks.page(params[:page])
-
       else
         @tasks = Task.order(created_at: :desc).page(params[:page])
       end
