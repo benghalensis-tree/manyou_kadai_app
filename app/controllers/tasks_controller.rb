@@ -6,18 +6,29 @@ class TasksController < ApplicationController
       @tasks = Task.order(:end_date).page(params[:page])
 
     elsif params[:search].present?
-      if task_name_params.present? && status_params.present?        
+      if task_name_params.present? && status_params.present? && label_params.present?    
+        @tasks = Task.search_task_name(task_name_params).search_status(status_params).search_label(label_params).page(params[:page])
+
+      elsif task_name_params.present? && status_params.present?        
         @tasks = Task.search_task_name(task_name_params).search_status(status_params).page(params[:page])
+
+      elsif task_name_params.present? && label_params.present?        
+        @tasks = Task.search_task_name(task_name_params).search_label(label_params).page(params[:page])
+
+      elsif status_params.present? && label_params.present?        
+        @tasks = Task.search_status(status_params).search_label(label_params).page(params[:page])
 
       elsif task_name_params.present?        
         @tasks = Task.search_task_name(task_name_params).page(params[:page])
 
       elsif status_params.present?
         @tasks = Task.search_status(status_params).page(params[:page])
+
+      elsif label_params.present?
+        @tasks = Task.search_label(label_params).page(params[:page])
       else
         @tasks = Task.order(created_at: :desc).page(params[:page])
       end
-      
     else
       @tasks = Task.order(created_at: :desc).page(params[:page])
     end
@@ -62,7 +73,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:task_name, :content, :status, :priority, :end_date, :admin)
+    params.require(:task).permit(:task_name, :content, :status, :priority, :end_date, :admin, label_ids:[])
   end
 
   def task_name_params 
@@ -71,6 +82,10 @@ class TasksController < ApplicationController
 
   def status_params
     params[:search][:status]
+  end
+
+  def label_params
+    params[:search][:label_id]
   end
 
 end

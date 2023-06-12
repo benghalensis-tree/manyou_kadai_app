@@ -6,4 +6,7 @@
   <li class="list-group-item">進捗状況  :   <%= @task.status %></li>
   <li class="list-group-item">優先度  :  <%= @task.priority %></li>
   <li class="list-group-item">終了日  :  <%= @task.end_date %></li>
+  <% @task.labels.each do |task| %>
+    <%= task.label_name %>
+  <% end %>
 </ul>
