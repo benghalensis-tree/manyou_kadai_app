@@ -8,10 +8,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if User.all.length == 0
-      @user.admin = true
-    else
+    if User.pluck(:admin).include?(true)
       @user.admin = false
+    else
+      @user.admin = true
     end
 
     if @user.save
